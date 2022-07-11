@@ -4,14 +4,12 @@ headerTitle: Build a Go application
 linkTitle: Go
 description: Build a simple Go application using the Go PostgreSQL driver and using the YSQL API to connect to and interact with a YugabyteDB Managed cluster.
 menu:
-  preview:
+  preview_yugabyte-cloud:
     parent: cloud-build-apps
     name: Go
     identifier: cloud-go
     weight: 200
-type: page
-isTocNested: true
-showAsideToc: true
+type: docs
 ---
 
 The following tutorial shows a small [Go application](https://github.com/yugabyte/yugabyte-simple-go-app) that connects to a YugabyteDB cluster using the [Go PostgreSQL driver](../../../../reference/drivers/ysql-client-drivers/#go-postgresql-driver-pq) and performs basic SQL operations. Use the application as a template to get started with YugabyteDB Managed in Go.
@@ -30,7 +28,7 @@ In addition to [Go (tested with version 1.17.6)](https://go.dev/dl/), this tutor
 Clone the sample application to your computer:
 
 ```sh
-git clone https://github.com/yugabyte/yugabyte-simple-go-app.git && cd yugabyte-simple-go-app
+git clone https://github.com/YugabyteDB-Samples/yugabyte-simple-go-app.git && cd yugabyte-simple-go-app
 ```
 
 ## Provide connection parameters

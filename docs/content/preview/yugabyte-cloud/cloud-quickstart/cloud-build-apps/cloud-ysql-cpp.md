@@ -3,14 +3,12 @@ title: Build a C++ application that uses YSQL
 headerTitle: Build a C++ application
 description: Build a small C++ application using the libpq driver and using the YSQL API to connect to and interact with a YugabyteDB Managed cluster.
 menu:
-  preview:
+  preview_yugabyte-cloud:
     parent: cloud-build-apps
     name: C++
     identifier: cloud-cpp
     weight: 500
-type: page
-isTocNested: true
-showAsideToc: true
+type: docs
 ---
 
 The following tutorial shows a small [C++ application](https://github.com/yugabyte/yugabyte-simple-cpp-app) that connects to a YugabyteDB cluster using the [libpqxx driver](../../../../reference/drivers/ysql-client-drivers/#libpqxx) and performs basic SQL operations. Use the application as a template to get started with YugabyteDB Managed in C++.
@@ -33,7 +31,7 @@ The following tutorial shows a small [C++ application](https://github.com/yugaby
 Clone the sample application to your computer:
 
 ```sh
-git clone https://github.com/yugabyte/yugabyte-simple-cpp-app && cd yugabyte-simple-cpp-app
+git clone https://github.com/YugabyteDB-Samples/yugabyte-simple-cpp-app.git && cd yugabyte-simple-cpp-app
 ```
 
 ## Provide connection parameters
