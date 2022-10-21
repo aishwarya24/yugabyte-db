@@ -369,7 +369,7 @@ You can follow the [Explore YSQL](../../../../../quick-start/explore/ysql) tutor
 
 ## 6. Connect using external clients
 
-To connect an external program, get the load balancer `EXTERNAL-IP` address of one of the `yb-tserver-service` service and connect to the 5433 / 9042 ports for YSQL / YCQL services respectively.
+.
 
 ```sh
 $ kubectl get services --namespace yb-demo
