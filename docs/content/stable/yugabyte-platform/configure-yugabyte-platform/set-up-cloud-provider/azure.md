@@ -29,7 +29,7 @@ type: docs
   <li>
     <a href="../azure/" class="nav-link active">
       <i class="icon-azure" aria-hidden="true"></i>
-      &nbsp;&nbsp; Azure
+      Azure
     </a>
   </li>
 
@@ -49,7 +49,9 @@ type: docs
 
 <li>
     <a href="../openshift/" class="nav-link">
-      <i class="fa-brands fa-redhat" aria-hidden="true"></i>OpenShift</a>
+      <i class="fa-brands fa-redhat" aria-hidden="true"></i>
+      OpenShift
+    </a>
   </li>
 
   <li>
@@ -61,7 +63,7 @@ type: docs
 
 </ul>
 
-<br>You can configure an Azure cloud provider for YugabyteDB clusters using YugabyteDB Anywhere.
+You can configure an Azure cloud provider for YugabyteDB clusters using YugabyteDB Anywhere.
 
 ## Prerequisites
 

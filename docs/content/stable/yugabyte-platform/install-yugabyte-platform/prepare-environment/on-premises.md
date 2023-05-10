@@ -70,9 +70,9 @@ A YugabyteDB Anywhere node has the following requirements:
 * The following ports should be open on the YugabyteDB Anywhere host:
   * 8800 – HTTP access to the Replicated UI.
   * 80 – HTTP access to the YugabyteDB Anywhere UI.
-  * 443 - HTTPs access to the YugabyteDB Anywhere UI.
+  * 443 – HTTPs access to the YugabyteDB Anywhere UI.
   * 22 – SSH.
-  * 9090 - Prometheus metrics
+  * 9090 – Prometheus metrics.
 
   For more information on ports used by YugabyteDB, refer to [Default ports](../../../../reference/configuration/default-ports).
 

@@ -35,7 +35,7 @@ type: docs
 
 </ul>
 
-<br>YugabyteDB universes and clusters are created and managed using YugabyteDB Anywhere. The default option is to install YugabyteDB Anywhere on a host machine that is connected to the Internet.
+YugabyteDB universes and clusters are created and managed using YugabyteDB Anywhere. The default option is to install YugabyteDB Anywhere on a host machine that is connected to the Internet.
 
 ## Install Replicated
 
@@ -102,10 +102,10 @@ Click **Continue** to configure YugabyteDB Anywhere.
 
 If the preflight check fails, review the [Troubleshoot YugabyteDB Anywhere](../../../troubleshoot/) to resolve the issue.
 
-## Set the TLS version for Nginx frontend
+## Set the TLS version for Yugaware frontend
 
 Specify TLS versions via **Application config**, as shown in the following illustration:
 
-![Application Config](/images/replicated/application-config.png)
+![Application Config](/images/replicated/application-config-tls.png)
 
 The recommended TLS version is 1.2.

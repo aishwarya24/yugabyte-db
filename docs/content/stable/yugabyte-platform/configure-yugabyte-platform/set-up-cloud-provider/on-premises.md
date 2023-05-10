@@ -12,7 +12,6 @@ type: docs
 ---
 
 <ul class="nav nav-tabs-alt nav-tabs-yb">
-
   <li>
     <a href="../aws/" class="nav-link">
       <i class="fa-brands fa-aws"></i>
@@ -50,7 +49,9 @@ type: docs
 
   <li>
     <a href="../openshift/" class="nav-link">
-      <i class="fa-brands fa-redhat" aria-hidden="true"></i>OpenShift</a>
+      <i class="fa-brands fa-redhat" aria-hidden="true"></i>
+      OpenShift
+    </a>
   </li>
 
   <li>
@@ -62,7 +63,7 @@ type: docs
 
 </ul>
 
-<br>You can configure the on-premises cloud provider for YugabyteDB using YugabyteDB Anywhere. If no cloud providers are configured, the main **Dashboard** prompts you to configure at least one cloud provider.
+You can configure the on-premises cloud provider for YugabyteDB using YugabyteDB Anywhere. If no cloud providers are configured, the main **Dashboard** prompts you to configure at least one cloud provider.
 
 ## Configure the on-premises provider
 
@@ -302,10 +303,25 @@ Physical nodes (or cloud instances) are installed with a standard CentOS 7 serve
 
 1. If running on a virtual machine, execute the following to tune kernel settings:
 
-    ```sh
-    sudo bash -c 'sysctl vm.swappiness=0 >> /etc/sysctl.conf'
-    sudo sysctl kernel.core_pattern=/home/yugabyte/cores/core_%e.%p >> /etc/sysctl.conf
-    ```
+    1. Configure the parameter `vm.swappiness` as follows:
+
+        ```sh
+        sudo bash -c 'sysctl vm.swappiness=0 >> /etc/sysctl.conf'
+        sudo sysctl kernel.core_pattern=/home/yugabyte/cores/core_%p_%t_%E >> /etc/sysctl.conf
+        ```
+
+    1. Configure the parameter `vm.max_map_count` as follows:
+
+        ```sh
+        sudo sysctl -w vm.max_map_count=262144
+        sudo bash -c 'sysctl vm.max_map_count=262144 >> /etc/sysctl.conf'
+        ```
+
+    1. Validate the change as follows:
+
+        ```sh
+        sysctl vm.max_map_count
+        ```
 
 1. Perform the following to prepare and mount the data volume (separate partition for database data):
 
@@ -442,17 +458,17 @@ You can install the backup utility for the backup storage you plan to use, as fo
 
 - Azure Storage: Install azcopy using one of the following options:
 
-  - Download `azcopy_linux_amd64_10.17.0.tar.gz` using the following command:
+  - Download `azcopy_linux_amd64_10.13.0.tar.gz` using the following command:
 
       ```sh
-      wget https://azcopyvnext.azureedge.net/release20230123/azcopy_linux_amd64_10.17.0.tar.gz 
+      wget https://azcopyvnext.azureedge.net/release20211027/azcopy_linux_amd64_10.13.0.tar.gz
       ```
 
-  - For airgapped installations, copy `/opt/third-party/azcopy_linux_amd64_10.17.0.tar.gz` from the YugabyteDB Anywhere node, as follows:
+  - For airgapped installations, copy `/opt/third-party/azcopy_linux_amd64_10.13.0.tar.gz` from the YugabyteDB Anywhere node, as follows:
 
       ```sh
       cd /usr/local
-      sudo tar xfz path-to-azcopy_linux_amd64_10.17.0.tar.gz -C /usr/local/bin azcopy_linux_amd64_10.17.0/azcopy --strip-components 1
+      sudo tar xfz path-to-azcopy_linux_amd64_10.13.0.tar.gz -C /usr/local/bin azcopy_linux_amd64_10.13.0/azcopy --strip-components 1
       ```
 
 - Google Cloud Storage: Install gsutil using one of the following options:
@@ -517,6 +533,11 @@ As an alternative to setting crontab permissions, you can install systemd-specif
    /bin/systemctl restart yb-tserver, \
    /bin/systemctl enable yb-tserver, \
    /bin/systemctl disable yb-tserver, \
+   /bin/systemctl start yb-bind_check.service, \
+   /bin/systemctl stop yb-bind_check.service, \
+   /bin/systemctl restart yb-bind_check.service, \
+   /bin/systemctl enable yb-bind_check.service, \
+   /bin/systemctl disable yb-bind_check.service, \
    /bin/systemctl start yb-zip_purge_yb_logs.timer, \
    /bin/systemctl stop yb-zip_purge_yb_logs.timer, \
    /bin/systemctl restart yb-zip_purge_yb_logs.timer, \
@@ -550,11 +571,11 @@ As an alternative to setting crontab permissions, you can install systemd-specif
    /bin/systemctl daemon-reload
    ```
 
-2. Ensure that you have root access and add the following service and timer files to the `/etc/systemd/system` directory (set their ownerships to the `yugabyte` user and 0644 permissions):<br><br>
+2. Ensure that you have root access and add the following service and timer files to the `/etc/systemd/system` directory (set their ownerships to the `yugabyte` user and 0644 permissions):
 
    `yb-master.service`
 
-   ```sh
+   ```properties
    [Unit]
    Description=Yugabyte master service
    Requires=network-online.target
@@ -593,7 +614,7 @@ As an alternative to setting crontab permissions, you can install systemd-specif
 
    `yb-tserver.service`
 
-   ```sh
+   ```properties
    [Unit]
    Description=Yugabyte tserver service
    Requires=network-online.target
@@ -632,7 +653,7 @@ As an alternative to setting crontab permissions, you can install systemd-specif
 
    `yb-zip_purge_yb_logs.service`
 
-   ```sh
+   ```properties
    [Unit]
    Description=Yugabyte logs
    Wants=yb-zip_purge_yb_logs.timer
@@ -650,7 +671,7 @@ As an alternative to setting crontab permissions, you can install systemd-specif
 
    `yb-zip_purge_yb_logs.timer`
 
-   ```sh
+   ```properties
    [Unit]
    Description=Yugabyte logs
    Requires=yb-zip_purge_yb_logs.service
@@ -668,7 +689,7 @@ As an alternative to setting crontab permissions, you can install systemd-specif
 
    `yb-clean_cores.service`
 
-   ```sh
+   ```properties
    [Unit]
    Description=Yugabyte clean cores
    Wants=yb-clean_cores.timer
@@ -686,7 +707,7 @@ As an alternative to setting crontab permissions, you can install systemd-specif
 
    `yb-clean_cores.timer`
 
-   ```sh
+   ```properties
    [Unit]
    Description=Yugabyte clean cores
    Requires=yb-clean_cores.service
@@ -704,7 +725,7 @@ As an alternative to setting crontab permissions, you can install systemd-specif
 
    `yb-collect_metrics.service`
 
-   ```sh
+   ```properties
    [Unit]
    Description=Yugabyte collect metrics
    Wants=yb-collect_metrics.timer
@@ -722,7 +743,7 @@ As an alternative to setting crontab permissions, you can install systemd-specif
 
    `yb-collect_metrics.timer`
 
-   ```sh
+   ```properties
    [Unit]
    Description=Yugabyte collect metrics
    Requires=yb-collect_metrics.service
@@ -736,6 +757,38 @@ As an alternative to setting crontab permissions, you can install systemd-specif
 
    [Install]
    WantedBy=timers.target
+   ```
+
+   `yb-bind_check.service`
+
+   ```properties
+   [Unit]
+   Description=Yugabyte IP bind check
+   Requires=network-online.target
+   After=network.target network-online.target multi-user.target
+   Before=yb-controller.service yb-tserver.service yb-master.service yb-collect_metrics.timer
+   StartLimitInterval=100
+   StartLimitBurst=10
+
+   [Path]
+   PathExists=/home/yugabyte/controller/bin/yb-controller-server
+   PathExists=/home/yugabyte/controller/conf/server.conf
+
+   [Service]
+   # Start
+   ExecStart=/home/yugabyte/controller/bin/yb-controller-server \
+       --flagfile /home/yugabyte/controller/conf/server.conf \
+       --only_bind --logtostderr
+   Type=oneshot
+   KillMode=control-group
+   KillSignal=SIGTERM
+   TimeoutStopSec=10
+   # Logs
+   StandardOutput=syslog
+   StandardError=syslog
+
+   [Install]
+   WantedBy=default.target
    ```
 
 ### Use node agents
@@ -752,18 +805,18 @@ You can install a node agent as follows:
 1. Download the installer from YugabyteDB Anywhere using the API token of the Super Admin, as follows:
 
    ```sh
-   curl https://<yugabytedb_anywhere_address>/api/v1/node_agents/download --header 'X-AUTH-YW-API-TOKEN: <api_token>' > installer.sh && chmod +x installer.sh
+   curl https://<yugabytedb_anywhere_address>/api/v1/node_agents/download --fail --header 'X-AUTH-YW-API-TOKEN: <api_token>' > installer.sh && chmod +x installer.sh
    ```
 
-3. Verify that the installer file contains the script.
+1. Verify that the installer file contains the script.
 
-3. Run the following command to download the node agent's `.tgz` file which installs and starts the interactive configuration:
+1. Run the following command to download the node agent's `.tgz` file which installs and starts the interactive configuration:
 
    ```sh
-   ./installer.sh -t install -u https://<yugabytedb_anywhere_address> -at <api_token>
+   ./installer.sh -c install -u https://<yugabytedb_anywhere_address> -t <api_token>
    ```
 
-   For example, if you execute `./installer.sh  -t install -u http://100.98.0.42:9000 -at 301fc382-cf06-4a1b-b5ef-0c8c45273aef`, expect the following output:
+   For example, if you execute `./installer.sh  -c install -u http://100.98.0.42:9000 -t 301fc382-cf06-4a1b-b5ef-0c8c45273aef`, expect the following output:
 
    ```output
    * Starting YB Node Agent install
@@ -793,10 +846,10 @@ You can install a node agent as follows:
    You can install a systemd service on linux machines by running node-agent-installer.sh -t install-service (Requires sudo access).
    ```
 
-4. Run the following command to enable the node agent as a systemd service, which is required for self-upgrade and other functions:
+1. Run the following command to enable the node agent as a systemd service, which is required for self-upgrade and other functions:
 
    ```sh
-   sudo node-agent-installer.sh -t install-service
+   sudo node-agent-installer.sh -c install-service --user yugabyte
    ```
 
 When the installation has been completed, the configurations are saved in the `config.yml` file located in the `node-agent/config/` directory. You should refrain from manually changing values in this file.

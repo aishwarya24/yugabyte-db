@@ -1,5 +1,5 @@
 ---
-title: Install YugabyteDB Anywhere software - Airgapped
+title: Install YugabyteDB Anywhere software for Airgapped environments
 headerTitle: Install YugabyteDB Anywhere software - Airgapped
 linkTitle: Install software
 description: Install YugabyteDB Anywhere software in your on-premises, airgapped environment.
@@ -150,10 +150,10 @@ Click **Continue** to configure YugabyteDB Anywhere.
 
 If the preflight check fails, review the [Troubleshoot YugabyteDB Anywhere](../../../troubleshoot/) to resolve the issue.
 
-## Set the TLS Version for Nginx Frontend
+## Set the TLS Version for Yugaware Frontend
 
 Specify TLS versions via **Application config**, as shown in the following illustration:
 
-![Application Config](/images/replicated/application-config.png)
+![Application Configuration](/images/replicated/application-config.png)
 
 The recommended TLS version is 1.2.

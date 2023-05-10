@@ -13,10 +13,10 @@ breadcrumbDisable: true
 resourcesIntro: Quick Links
 resources:
   - title: What's new
-    url: /preview/releases/release-notes/v2.15/
+    url: /preview/releases/yba-releases/
   - title: FAQ
     url: /preview/faq/yugabyte-platform/
-  - title: Free trial
+  - title: yugabyte.com
     url: https://www.yugabyte.com/anywhere/
 ---
 
@@ -42,13 +42,13 @@ YugabyteDB Anywhere offers three levels of user accounts: Super Admin, Admin, an
     description="Confiure YugabyteDB Anywhere for various cloud providers."
     buttonText="Learn more"
     buttonUrl="configure-yugabyte-platform/"
-	imageAlt="Locally Laptop" imageUrl="/images/homepage/locally-laptop.svg"
+    imageAlt="Locally Laptop" imageUrl="/images/homepage/locally-laptop.svg"
   >}}
 {{< /sections/2-boxes >}}
 
 ## Use YugabyteDB Anywhere
 
-{{< sections/3-boxes>}}
+{{< sections/3-boxes >}}
   {{< sections/3-box-card
     title="Deploy"
     description="Deploy multi-region, multi-zone, and multi-cloud universes."
@@ -62,44 +62,45 @@ YugabyteDB Anywhere offers three levels of user accounts: Super Admin, Admin, an
     buttonText="Manage"
     buttonUrl="manage-deployments/"
   >}}
- 
+
   {{< sections/3-box-card
     title="Back up"
     description="Configure storage, back up and restore universe data."
     buttonText="Back up"
     buttonUrl="back-up-restore-universes/"
   >}}
-{{< /sections/3-boxes>}}
+{{< /sections/3-boxes >}}
 
-## Continue learning
+## Additional resources
 
-{{< sections/3-boxes>}}
+{{< sections/3-boxes >}}
   {{< sections/3-box-card
-	title="Build applications"
-	description="Start coding in your favorite programming language using examples."
-	buttonText="Get Started"
-	buttonUrl="../develop/build-apps/"
+  title="Build applications"
+  description="Start coding in your favorite programming language using examples."
+  buttonText="Get started"
+  buttonUrl="../develop/build-apps/"
   >}}
-  
-  {{< sections/3-box-card
-	title="Yugabyte University"
-	subTitle="FREE COURSES AND WORKSHOPS"
-	linkText1="Developer workshops"
-	linkUrl1="https://university.yugabyte.com/collections/builder-workshop"
-	linkTarget1="_blank"
-	linkText2="YSQL exercises"
-	linkUrl2="https://university.yugabyte.com/courses/ysql-exercises-simple-queries"
-	linkTarget2="_blank"
-  >}}
-  
-  {{< sections/3-box-card
-	title="Support"
-	linkText1="Contact Support"
-	linkUrl1="https://support.yugabyte.com/hc/en-us/requests/new?ticket_form_id=360001955891"
-	linkTarget1="_blank"
-	linkText2="Join our community"
-	linkUrl2="https://communityinviter.com/apps/yugabyte-db/register"
-	linkTarget2="_blank"
-  >}}
-{{< /sections/3-boxes>}}
 
+  {{< sections/3-box-card
+  title="Yugabyte University"
+  description="Take free courses and workshops to learn YugabyteDB, YSQL, and YCQL."
+  linkText1="Developer workshops"
+  linkUrl1="https://university.yugabyte.com/collections/builder-workshop"
+  linkTarget1="_blank"
+  linkText2="YSQL exercises"
+  linkUrl2="https://university.yugabyte.com/courses/ysql-exercises-simple-queries"
+  linkTarget2="_blank"
+  >}}
+
+  {{< sections/3-box-card
+  title="Support"
+  description="Ask questions, request assistance from our team, participate in our journey."
+  linkText1="Contact Support"
+  linkUrl1="https://support.yugabyte.com/hc/en-us/requests/new?ticket_form_id=360001955891"
+  linkTarget1="_blank"
+  linkText2="Join our community"
+  linkUrl2="https://communityinviter.com/apps/yugabyte-db/register"
+  linkTarget2="_blank"
+  >}}
+
+{{< /sections/3-boxes >}}
