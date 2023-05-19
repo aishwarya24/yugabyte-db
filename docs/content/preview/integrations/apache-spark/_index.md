@@ -22,7 +22,7 @@ type: indexpage
         <div class="title">YSQL</div>
       </div>
       <div class="body">
-          Use Apache Spark with YugabyteDB to add data and run YSQL queries.
+          Use Apache Spark with YugabyteDB to add data and run YSQL queries
       </div>
     </a>
   </div>
