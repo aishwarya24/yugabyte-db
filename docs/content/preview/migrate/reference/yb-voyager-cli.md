@@ -84,7 +84,6 @@ The valid *arguments* for export schema are described in the following table:
 | [--source-ssl-root-cert](#ssl-connectivity) <path> | Path to a file containing SSL certificate authority (CA) certificate(s). |
 | [--start-clean](#start-clean) | Clean the schema data directories. |
 | [--use-orafce](#use-orafce) | Use the Orafce extension. Oracle migrations only. |
-| [--verbose](#verbose) | Display extra information in the output. |
 | [-y, --yes](#yes) | Answer yes to all prompts during the export schema operation. |
 
 #### Example
@@ -216,7 +215,7 @@ During migration, run the import schema command twice, first without the [--post
 
 {{< note title="For Oracle migrations" >}}
 
-For Oracle migrations using YugabyteDB Voyager v1.1, the Orafce extension is installed on the target database by default. This enables you to use a subset of predefined functions, operators, and packages from Oracle. The extension is installed in the public schema, and when listing functions or views, extra objects will be visible on the target database which may confuse you. You can remove the extension using the [DROP EXTENSION](../../../api/ysql/the-sql-language/statements/ddl_drop_extension) command.
+For Oracle migrations using YugabyteDB Voyager v1.1 and later, the Orafce extension is installed on the target database by default. This enables you to use a subset of predefined functions, operators, and packages from Oracle. The extension is installed in the public schema, and when listing functions or views, extra objects will be visible on the target database which may confuse you. You can remove the extension using the [DROP EXTENSION](../../../api/ysql/the-sql-language/statements/ddl_drop_extension) command.
 
 {{< /note >}}
 

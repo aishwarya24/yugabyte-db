@@ -18,21 +18,21 @@ Create a role and a database user, and provide the user with READ access to all 
    ```sql
    CREATE ROLE <SCHEMA_NAME>_reader_role;
 
-   BEGIN
-       FOR R IN (SELECT owner, object_name FROM all_objects WHERE owner='<SCHEMA_NAME>' and object_type in ('VIEW','SEQUENCE','TABLE PARTITION','TABLE','SYNONYM','MATERIALIZED VIEW'))
+    BEGIN
+       FOR R IN (SELECT owner, object_name FROM all_objects WHERE owner=UPPER('<SCHEMA_NAME>' ) and object_type in ('VIEW','SEQUENCE','TABLE PARTITION','TABLE','SYNONYM','MATERIALIZED VIEW'))
        LOOP
            EXECUTE IMMEDIATE 'grant select on '||R.owner||'."'||R.object_name||'" to <SCHEMA_NAME>_reader_role';
        END LOOP;
-   END;
-   /
-
-   BEGIN
-       FOR R IN (SELECT owner, object_name FROM all_objects WHERE owner='<SCHEMA_NAME>' and object_type = 'TYPE')
+    END;
+    /
+    BEGIN
+       FOR R IN (SELECT owner, object_name FROM all_objects WHERE owner=UPPER('<SCHEMA_NAME>' ) and object_type = 'TYPE')
        LOOP
            EXECUTE IMMEDIATE 'grant execute on '||R.owner||'."'||R.object_name||'" to <SCHEMA_NAME>_reader_role';
        END LOOP;
-   END;
-   /
+    END;
+    /
+
 
    GRANT SELECT_CATALOG_ROLE TO <SCHEMA_NAME>_reader_role;
    GRANT SELECT ANY DICTIONARY TO <SCHEMA_NAME>_reader_role;
