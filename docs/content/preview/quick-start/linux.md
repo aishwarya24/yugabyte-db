@@ -106,7 +106,7 @@ To configure YugabyteDB, run the following shell script:
 
 ```sh
 ./bin/post_install.sh
-```
+``````
 
 ## Create a local cluster
 
