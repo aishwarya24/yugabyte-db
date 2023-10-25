@@ -14,7 +14,7 @@ menu:
     weight: 104
 ---
 
-This section documents unsupported features as well as known issues and workarounds when migrating data with YugabyteDB Voyager.
+This section document unsupported features as well as known issues and workarounds when migrating data with YugabyteDB Voyager.
 
 ## Unsupported features
 
