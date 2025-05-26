@@ -17,7 +17,7 @@ type: docs
 
 {{<api-tabs>}}
 
-Point-in-time recovery (PITR) allows you to restore the state of your cluster's data and some types of metadata from a specific point in time. This can be relative, such as "three hours ago", or an absolute timestamp.
+(PITR) allows you to restore the state of your cluster's data and some types of metadata from a specific point in time. This can be relative, such as "three hours ago", or an absolute timestamp.
 
 For more information, see [Point-in-time recovery](../../../manage/backup-restore/point-in-time-recovery). For details on the yb-admin commands, refer to [Backup and snapshot commands](../../../admin/yb-admin/#backup-and-snapshot-commands).
 
