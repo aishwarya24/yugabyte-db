@@ -4,9 +4,9 @@ headerTitle: "Chapter 1: Debuting with PostgreSQL"
 linkTitle: Debuting with PostgreSQL
 description: Build and launch the first version of the YugaPlus streaming service on PostgreSQL.
 menu:
-  preview_develop:
+  preview_ai:
     identifier: chapter1-debuting-with-postgres
-    parent: tutorials-build-and-learn
+    parent: tutorials-ai-movie-recommendations
     weight: 2
 type: docs
 ---

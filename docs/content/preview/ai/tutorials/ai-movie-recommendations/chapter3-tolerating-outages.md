@@ -4,9 +4,9 @@ headerTitle: "Chapter 3: Tolerating outages with YugabyteDB"
 linkTitle: Tolerating outages
 description: Make the YugaPlus service highly-available by using the smart driver and deploying YugabyteDB across several data centers.
 menu:
-  preview_develop:
+  preview_ai:
     identifier: chapter3-tolerating-outages
-    parent: tutorials-build-and-learn
+    parent: tutorials-ai-movie-recommendations
     weight: 4
 type: docs
 ---

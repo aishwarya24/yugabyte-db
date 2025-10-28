@@ -115,15 +115,24 @@
     excludeVersion = true
 
 [[main]]
-  name = "Integrations"
+  name = "AI"
   weight = 3
+  url = "/preview/ai/"
+  [main.params]
+    excludeVersion = true
+    description = "Build AI applications with YugabyteDB - RAG, vector search, LLMs"
+    imageUrl = "/icons/ai.svg"
+
+[[main]]
+  name = "Integrations"
+  weight = 4
   url = "/preview/integrations/"
   [main.params]
     excludeVersion = true
 
 [[main]]
   name = "API"
-  weight = 4
+  weight = 5
   identifier = "yugabyte-apis"
   url = "/api/"
 
@@ -774,6 +783,56 @@
   parent = "tutorials"
   identifier = "tutorials-cdc"
   [preview_develop.params]
+    showSection = true
+
+########## Menus (in preview) for AI
+
+[[preview_ai]]
+  name = "AI"
+  weight = 1
+  identifier = "ai"
+  url = "/preview/ai/"
+  [preview_ai.params]
+    showSection = true
+
+[[preview_ai]]
+  name = "Get started"
+  weight = 10
+  identifier = "ai-get-started"
+  url = "/preview/ai/get-started/"
+  [preview_ai.params]
+    showSection = true
+
+[[preview_ai]]
+  name = "Tutorials"
+  weight = 20
+  identifier = "ai-tutorials"
+  url = "/preview/ai/tutorials/"
+  [preview_ai.params]
+    showSection = true
+
+[[preview_ai]]
+  name = "Vector search"
+  weight = 30
+  identifier = "ai-vector-search"
+  url = "/preview/ai/vector-search/"
+  [preview_ai.params]
+    showSection = true
+
+[[preview_ai]]
+  name = "Applications"
+  weight = 40
+  identifier = "ai-applications"
+  url = "/preview/ai/applications/"
+  [preview_ai.params]
+    showSection = true
+
+[[preview_ai]]
+  name = "Reference"
+  weight = 50
+  identifier = "ai-reference"
+  url = "/preview/ai/reference/"
+  [preview_ai.params]
     showSection = true
 
 ########## Menus (in preview) for APIs

@@ -7,9 +7,9 @@ description: Learn how to do similarity search in YSQL
 tags:
   other: ysql
 menu:
-  preview_develop:
+  preview_ai:
     identifier: similarity-search
-    parent: text-search
+    parent: ai-vector-search
     weight: 200
 rightNav:
   hideH3: true

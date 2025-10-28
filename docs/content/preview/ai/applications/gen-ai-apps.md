@@ -4,9 +4,9 @@ headerTitle: Gen-AI applications
 linkTitle: Gen-AI apps
 headcontent: Build a virtual assistant for YugabyteDB
 menu:
-  preview:
+  preview_ai:
     identifier: gen-ai-apps
-    parent: going-beyond-sql
+    parent: ai-applications
     weight: 700
 rightNav:
   hideH3: true

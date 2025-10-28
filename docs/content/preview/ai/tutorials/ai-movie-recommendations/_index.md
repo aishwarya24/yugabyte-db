@@ -5,10 +5,10 @@ linkTitle: Build and Learn
 description: learn the essential capabilities of YugabyteDB by building YugaPlus, a scalable and fault-tolerant streaming platform
 type: indexpage
 menu:
-  preview_develop:
-    parent: tutorials
-    identifier: tutorials-build-and-learn
-    weight: 20
+  preview_ai:
+    identifier: tutorials-ai-movie-recommendations
+    parent: ai-tutorials
+    weight: 10
 cascade:
   unversioned: true
 ---
