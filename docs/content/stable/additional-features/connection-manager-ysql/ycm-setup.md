@@ -60,7 +60,7 @@ To create a large number of client connections, ensure that "SHMMNI" (the maximu
   </div>
   <div id="platform" class="tab-pane fade" role="tabpanel" aria-labelledby="platform-tab">
 
-{{<tags/feature/ea idea="1368">}}While in Early Access, YSQL Connection Manager is not available in YugabyteDB Anywhere by default. To make connection pooling available, set the **Allow users to enable or disable connection pooling** Global Runtime Configuration option (config key `yb.universe.allow_connection_pooling`) to true. Refer to [Manage runtime configuration settings](../../../yugabyte-platform/administer-yugabyte-platform/manage-runtime-config/). You must be a Super Admin to set global runtime configuration flags.
+{{<tags/feature/ga idea="1368">}}While in Early Access, YSQL Connection Manager is not available in YugabyteDB Anywhere by default. To make connection pooling available, set the **Allow users to enable or disable connection pooling** Global Runtime Configuration option (config key `yb.universe.allow_connection_pooling`) to true. Refer to [Manage runtime configuration settings](../../../yugabyte-platform/administer-yugabyte-platform/manage-runtime-config/). You must be a Super Admin to set global runtime configuration flags.
 
 To enable built-in connection pooling for universes deployed using YugabyteDB Anywhere:
 
