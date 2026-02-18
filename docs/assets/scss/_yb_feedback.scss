@@ -1,0 +1,88 @@
+// Rate this page / feedback widget
+.yb-rate-page {
+  margin: 1.5rem 0;
+  padding: 1rem 0;
+  border-top: 1px solid #e9eef2;
+
+  .yb-rate-page__prompt {
+    margin: 0 0 0.75rem;
+    font-weight: 500;
+    color: #0b1117;
+  }
+
+  .yb-rate-page__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .yb-rate-page__btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9375rem;
+    border-radius: 6px;
+    border: 1px solid #d7dee4;
+    background: #fff;
+    color: #0b1117;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+
+    &:hover {
+      background: #f5f7f9;
+      border-color: #b8c4ce;
+    }
+
+    &--yes:hover { border-color: #2d7d45; background: #e8f5eb; }
+    &--no:hover  { border-color: #c53030; background: #fff5f5; }
+    &--submit {
+      margin-top: 0.5rem;
+      background: #3176d9;
+      border-color: #3176d9;
+      color: #fff;
+      &:hover { background: #2868c7; border-color: #2868c7; }
+    }
+  }
+
+  .yb-rate-page__comment-wrap {
+    margin-top: 1rem;
+    max-width: 32rem;
+  }
+
+  .yb-rate-page__comment-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #0b1117;
+  }
+
+  .yb-rate-page__comment {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    line-height: 1.5;
+    border: 1px solid #d7dee4;
+    border-radius: 6px;
+    resize: vertical;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: #6d7c88;
+    }
+    &:focus {
+      outline: none;
+      border-color: #3176d9;
+      box-shadow: 0 0 0 2px rgba(49, 118, 217, 0.2);
+    }
+  }
+
+  .yb-rate-page__thanks {
+    margin: 0;
+    font-weight: 500;
+    color: #2d7d45;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+}

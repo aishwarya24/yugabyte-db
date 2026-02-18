@@ -1,0 +1,74 @@
+{{- $cfg := . -}}
+{{- $endpoint := "" -}}
+{{- if $cfg.endpoint }}{{ $endpoint = $cfg.endpoint }}{{ end -}}
+<div class="yb-rate-page" id="yb-rate-page" data-feedback-endpoint="{{ $endpoint }}">
+  <p class="yb-rate-page__prompt">Was this page helpful?</p>
+  <div class="yb-rate-page__actions">
+    <button type="button" class="yb-rate-page__btn yb-rate-page__btn--yes" data-rating="yes" aria-label="Yes, this page was helpful">
+      Yes
+    </button>
+    <button type="button" class="yb-rate-page__btn yb-rate-page__btn--no" data-rating="no" aria-label="No, this page was not helpful">
+      No
+    </button>
+  </div>
+  <div class="yb-rate-page__comment-wrap hidden" id="yb-rate-page-comment-wrap" aria-live="polite">
+    <label for="yb-rate-page-comment" class="yb-rate-page__comment-label">What could we improve? (optional)</label>
+    <textarea id="yb-rate-page-comment" class="yb-rate-page__comment" rows="3" placeholder="e.g. Missing steps, unclear explanation, broken example..."></textarea>
+    <button type="button" class="yb-rate-page__btn yb-rate-page__btn--submit" id="yb-rate-page-submit">Submit feedback</button>
+  </div>
+  <p class="yb-rate-page__thanks hidden" id="yb-rate-page-thanks">Thank you for your feedback.</p>
+</div>
+<script>
+(function() {
+  var widget = document.getElementById('yb-rate-page');
+  if (!widget) return;
+  var endpoint = widget.getAttribute('data-feedback-endpoint') || '';
+  var commentWrap = document.getElementById('yb-rate-page-comment-wrap');
+  var commentEl = document.getElementById('yb-rate-page-comment');
+  var submitBtn = document.getElementById('yb-rate-page-submit');
+  var thanksEl = document.getElementById('yb-rate-page-thanks');
+  var yesBtn = widget.querySelector('[data-rating="yes"]');
+  var noBtn = widget.querySelector('[data-rating="no"]');
+  var payload = { page: window.location.pathname, title: document.title, rating: null, comment: '' };
+
+  function sendFeedback() {
+    payload.comment = commentEl ? commentEl.value.trim() : '';
+    if (endpoint) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', endpoint, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify(payload));
+    }
+    if (typeof gtag === 'function') {
+      gtag('event', 'docs_feedback', { page_path: payload.page, rating: payload.rating, comment_length: (payload.comment || '').length });
+    }
+  }
+
+  function showThanks() {
+    widget.querySelector('.yb-rate-page__actions').classList.add('hidden');
+    if (commentWrap) commentWrap.classList.add('hidden');
+    if (thanksEl) thanksEl.classList.remove('hidden');
+  }
+
+  function handleRating(rating) {
+    if (payload.rating !== null) return;
+    payload.rating = rating;
+    if (rating === 'yes') {
+      sendFeedback();
+      showThanks();
+    } else {
+      if (commentWrap) commentWrap.classList.remove('hidden');
+      if (commentEl) commentEl.focus();
+    }
+  }
+
+  function handleSubmit() {
+    sendFeedback();
+    showThanks();
+  }
+
+  if (yesBtn) yesBtn.addEventListener('click', function() { handleRating('yes'); });
+  if (noBtn) noBtn.addEventListener('click', function() { handleRating('no'); });
+  if (submitBtn) submitBtn.addEventListener('click', handleSubmit);
+})();
+</script>

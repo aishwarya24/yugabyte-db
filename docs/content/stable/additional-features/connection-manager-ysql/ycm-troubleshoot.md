@@ -57,12 +57,14 @@ A consistently high `avg_wait_time_ns` metric for the `control_connection` pool 
 
 ## SSL behaviour
 
-Although Connection Manager supports all SSL modes that clients can set in a connection, the behaviour can be slightly different. The following corner cases can result in different behavior when using Connection Manager compared to a direct database connection:
+Although Connection Manager supports all SSL modes that clients can set in a connection, the behaviour can differ from a direct connection to the database in the following cases:
 
-- Enable TLS in cluster, add `{host all all all trust}` in the HBA file, and try making a connection using sslmode=disable. The connection will fail with Connection Manager, whereas it will be successfully created if connected directly to the database port.
+- **TLS enabled, HBA has `host all all all trust`, client uses sslmode=disable** — The connection fails with Connection Manager but succeeds when connecting directly to the database port.
 
-- Enable TLS in cluster, add `{host all all all trust}` in the HBA file, and try making a connection using sslmode=allow. An encrypted connection will be created with Connection Manager, whereas when connecting to a database port an unencrypted connection will be created.
+- **TLS enabled, HBA has `host all all all trust`, client uses sslmode=allow** — An encrypted connection is created with Connection Manager; a direct connection to the database port results in an unencrypted connection.
 
-- Enable TLS in cluster and create a connection using sslmode=disable. Connection Manager will throw the following error: `odyssey: c8240c445726f: SSL is required`; whereas when connecting to the database port, the error message is `FATAL:  no pg_hba.conf entry for host`.
+- **TLS enabled, client uses sslmode=disable** — Connection Manager returns: `odyssey: c8240c445726f: SSL is required`. A direct connection to the database port returns: `FATAL:  no pg_hba.conf entry for host`.
 
 The main reason for these differences in behaviour is because sometimes authentication is done at the Connection Manager layer itself, rather than following the standard authentication mechanism (where authentication happens on the server based on credentials forwarded by Connection Manager).
+
+For details on how each client SSL mode (disable, allow, prefer, require, verify-ca, verify-full) behaves with Connection Manager when TLS is enabled or disabled in the cluster, see [Client SSL modes and TLS](../ycm-setup/#client-ssl-modes-and-tls) in Set up YSQL Connection Manager.
