@@ -188,9 +188,9 @@ local all yugabyte trust
 | disable | Client attempts a non-SSL connection | Yes, but error messages differ | No connection. PostgreSQL: `FATAL: no pg_hba.conf entry for host "...", user "...", database "...", SSL off`. Connection manager: `odyssey: ... SSL is required`. Non-SSL attempt is rejected by connection manager | Yes. Adding `host all all all trust`: connection fails with connection manager; connection succeeds with PostgreSQL. {{<issue 10136>}} |
 | allow | Tries unencrypted first, then secure | Yes | Encrypted connection is established. First non-SSL attempt is rejected by connection manager; second SSL attempt follows connection manager authentication | Yes. With `host all all all trust`: encrypted connection with connection manager; unencrypted with PostgreSQL |
 | prefer (default in PostgreSQL) | Tries secure first, then unencrypted | Yes | Encrypted connection is established. First SSL attempt succeeds with connection manager | No case found |
-| require | Uses secure connection; fails if not available | Yes | Encrypted connection is established | No case found |
-| verify-ca | Like require + verifies server cert against CA | Yes | Encrypted connection; client verifies the TLS certificate | No case found |
-| verify-full | Like verify-ca + verifies cert hostname | Yes | Encrypted connection; client verifies the TLS certificate and hostname | No case found |
+| require | Uses secure connection, fails if not available | Yes | Encrypted connection is established | No case found |
+| verify-ca | Behaves like require. Additionally, verifies server cert against CA, or fails if no valid matching CA certificates are found. | Yes | Encrypted connection; client verifies the TLS certificate | No case found |
+| verify-full | Behaves like verify-ca. Additionally, verifies that the server cert matches the host. | Yes | Encrypted connection; client verifies the TLS certificate and hostname | No case found |
 
 ### Certificate verification (verify-full)
 
