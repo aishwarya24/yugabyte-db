@@ -208,14 +208,30 @@ class PgSession final : public RefCountedThreadSafe<PgSession> {
   Status ReleaseAdvisoryLock(const YbcAdvisoryLockId& lock_id, YbcAdvisoryLockMode mode);
   Status ReleaseAllAdvisoryLocks(uint32_t db_oid);
 
-  Status AcquireObjectLock(const YbcObjectLockId& lock_id, YbcObjectLockMode mode);
+  Status AcquireObjectLock(
+      const YbcObjectLockId& lock_id, YbcObjectLockMode mode, bool is_session_lock);
+  Status ReleaseSessionObjectLock(const YbcObjectLockId& lock_id, bool release_all);
 
   YbcReadPointHandle GetCurrentReadPoint() const {
     return pg_txn_manager_->GetCurrentReadPoint();
   }
 
+  TxnReadPoint GetCurrentReadPointState() const {
+    return pg_txn_manager_->GetCurrentReadPointState();
+  }
+
   Status RestoreReadPoint(YbcReadPointHandle read_point) {
     return pg_txn_manager_->RestoreReadPoint(read_point);
+  }
+
+  // Restores the read point to saved_read_point.read_time, but only if the current
+  // txn matches saved_read_point.txn. If txn doesn't match, no restore is performed.
+  Status RestoreReadPoint(const TxnReadPoint& saved_read_point) {
+    return pg_txn_manager_->RestoreReadPoint(saved_read_point);
+  }
+
+  Status EnsureReadPoint() {
+    return pg_txn_manager_->EnsureReadPoint();
   }
 
   YbcReadPointHandle GetCatalogSnapshotReadPoint(YbcPgOid table_oid, bool create_if_not_exists);
@@ -234,6 +250,7 @@ class PgSession final : public RefCountedThreadSafe<PgSession> {
 
   struct PerformOptions {
     UseCatalogSession use_catalog_session = UseCatalogSession::kFalse;
+    bool has_catalog_ops = false;
     std::optional<ReadTimeAction> read_time_action = {};
     std::optional<CacheOptions> cache_options = std::nullopt;
     HybridTime in_txn_limit = {};

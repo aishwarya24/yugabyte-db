@@ -649,6 +649,7 @@ typedef struct {
   uint64_t active_pid;
   bool expired;
   bool allow_tables_without_primary_key;
+  bool detect_publication_changes_implicitly;
 } YbcReplicationSlotDescriptor;
 
 typedef struct {
@@ -995,6 +996,12 @@ typedef struct {
   YbcCatalogMessageList* message_lists;
   int num_lists;
 } YbcCatalogMessageLists;
+
+typedef struct {
+  YbcPgOid table_oid;
+  uint64_t mutations;
+  char* last_analyze_info;
+} YbcAutoAnalyzeInfo;
 
 typedef enum {
   /*
