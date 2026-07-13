@@ -20,7 +20,7 @@ menu:
 breadcrumbDisable: true
 ---
 
-Use YugabyteDB Voyager to manage end-to-end database migration, including cluster preparation, schema migration, and data migration. Voyager safely migrates data from PostgreSQL, MySQL, and Oracle databases to YugabyteDB Aeon, YugabyteDB Anywhere, and the core open source database, YugabyteDB.
+Use YugabyteDB Voyager to manage end-to-end database migration, including cluster preparation, schema migration, and data migration. Voyager supports offline and live migration from PostgreSQL to YugabyteDB Aeon, YugabyteDB Anywhere, and the core open source database, YugabyteDB. Offline migration from MySQL and Oracle was deprecated on July 13, 2026, and will no longer be supported after October 13, 2026. Contact {{% support-general %}} for guidance on migration options.
 
 {{< sections/text-with-right-image
   title="Get Started"
